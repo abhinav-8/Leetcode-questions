@@ -1,13 +1,21 @@
 class Solution {
+    vector<vector<int>>questions;
+    vector<long long>dp;long long n;
 public:   
+    long long MaxPoints(int i=0){
+        bool outOfBound = i>=n;
+        if(outOfBound) return 0;
+        long long &ans=dp[i];
+        if(ans!=-1) return ans; 
+        long long op1=questions[i][0]+MaxPoints(i+questions[i][1]+1);
+        long long op2=MaxPoints(i+1);
+        return ans=max(op1,op2);
+    }
     long long mostPoints(vector<vector<int>>& questions) {
-        long long n=questions.size(); 
-        vector<long long>dp(n,0);
-        for(int i=n-1;i>=0;i--){
-            long long op1=i+questions[i][1]+1<n?dp[i+questions[i][1]+1]:0;
-            long long op2=i+1<n?dp[i+1]:0;
-            dp[i]=max(op1+questions[i][0],op2);
-        }
-        return dp[0];
+        this->questions=questions;
+        n=questions.size();
+        dp.resize(n,-1);
+        return MaxPoints();
+        
     }
 };
