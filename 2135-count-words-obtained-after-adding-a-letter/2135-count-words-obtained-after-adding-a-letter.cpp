@@ -9,7 +9,6 @@ public:
         }
         for(auto &i:targetWords){
             sort(i.begin(),i.end());
-            // Mtarget[i]=true;
         }
         for(auto i:targetWords){
             string s1=i,s2;
@@ -18,10 +17,7 @@ public:
                 s2=s1;
                 s2.erase(s2.begin()+j);
                 if(Mstart[s2]==true) {ans++;break;}
-            }
-            // s1.pop_back();
-            // cout<<s1<<" ";
-            
+            } 
         }
         return ans;
         
